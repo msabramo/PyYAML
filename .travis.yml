@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - 2.5
+  - 2.6
+  - 2.7
+  - 3.2
+  - pypy
+
+script:
+  - pip install --use-mirrors --upgrade Cython distribute
+  - cython ext/_yaml.pyx   # Not sure why I need this on Travis Python 3.2, but not my Mac...
+  - python setup.py build_ext
+  - python setup.py build
+  - python setup.py install
+  - python setup.py test
